@@ -75,6 +75,7 @@ class MoviesController < ApplicationController
     movie_ids.each do |movie_id|
       Movie.add_movies movie_id
     end
+    flash[:notice] = "Movies successfully added to Rotten Potatoes"
     redirect_to movies_path
   end
 
