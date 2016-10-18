@@ -68,6 +68,10 @@ class MoviesController < ApplicationController
       redirect_to movies_path and return
     end
     @movies=Movie.find_in_tmdb(params[:search_terms])
+    if @movies.blank?
+      flash[:warning] = "No matching movies were found on TMDb"
+      redirect_to movies_path and return
+    end
   end
   
   def add_movies
