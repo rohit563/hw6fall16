@@ -27,7 +27,7 @@
 Search for movie titles containing <br>
 
 = form_tag '/movies/search_tmdb', :method => :post, :id => 'search_form' do
-  = text_field_tag :search_terms, params[:search_terms], placeholder: "Search Movies"
-  = submit_tag 'Search TMDb'
+  = text_field_tag :search_terms, params[:search_terms], :id => 'search_box' 
+  = submit_tag 'Search TMDb', :id => 'search_botton'
   
 = link_to 'Add new movie', new_movie_path

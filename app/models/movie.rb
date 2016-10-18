@@ -25,7 +25,6 @@ class Movie::InvalidKeyError < StandardError ; end
          else
            rating = 'N/A'
          end
-
          if movie['release_date'].blank?
            release_date = 'TBD'
          else
@@ -40,22 +39,19 @@ class Movie::InvalidKeyError < StandardError ; end
   
   def self.add_movies(movie_id)
     movie = Tmdb::Movie.detail(movie_id)
-    releases = Tmdb::Movie.releases(movie_id)
     title = movie['original_title']
     release_date = movie['release_date']
+    releases = Tmdb::Movie.releases(movie_id)
 
-    country_releases = releases['countries'] # select primary release hash from array of hashes
+
+    country_releases = releases['countries'] 
     us_release = country_releases.select {|release| release['iso_3166_1'] == 'US'}
-    if !us_release.blank? # check if the film was released in the US
-      rating = us_release[0]['certification'] # assign rating to local var
+    if !us_release.blank? 
+      rating = us_release[0]['certification'] 
     else
       rating = 'N/A'
     end
-    movie_params = {
-        :title => title,
-        :release_date => release_date,
-        :rating => rating
-    }
+    movie_params = {:title => title, :release_date => release_date, :rating => rating}
     Movie.create!(movie_params)
   end
 end
