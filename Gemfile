@@ -65,3 +65,6 @@ group :production do
   gem 'rails_12factor'
 end
 
+group :coverage do
+  gem 'simplecov', :require => false
+end
