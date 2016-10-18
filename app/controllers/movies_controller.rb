@@ -78,7 +78,6 @@ class MoviesController < ApplicationController
     if params[:checkbox].nil?
       flash[:notice] = "No movies selected"
       redirect_to movies_path
-    end
     else
       movie_ids = params[:checkbox].keys
       movie_ids.each do |movie_id|
